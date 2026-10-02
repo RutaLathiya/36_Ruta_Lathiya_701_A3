@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Details</title>
+
+    <link rel="stylesheet"
+        href="/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Registration Successful</h1>
+
+    <table>
+
+        <tr>
+            <th>Field</th>
+            <th>Details</th>
+        </tr>
+
+
+        <tr>
+
+            <td>Username</td>
+
+            <td>
+                <%= user.username %>
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Password</td>
+
+            <td>
+                <%= user.password %>
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Email</td>
+
+            <td>
+                <%= user.email %>
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Gender</td>
+
+            <td>
+                <%= user.gender %>
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Hobbies</td>
+
+            <td>
+
+                <%
+                    let hobbyList = Array.isArray(user.hobbies)
+                        ? user.hobbies
+                        : [user.hobbies];
+                %>
+
+                <%= hobbyList.join(", ") %>
+
+            </td>
+
+        </tr>
+
+
+        <!-- Profile Picture -->
+
+        <tr>
+
+            <td>Profile Picture</td>
+
+            <td>
+
+                <% if (profilePic) { %>
+
+                    <img
+                        src="/uploads/profile/<%= profilePic.filename %>"
+                        class="profile-img"
+                    >
+
+                    <br>
+
+                    <a
+                        href="/download/profile/<%= profilePic.filename %>"
+                    >
+                        Download Profile Picture
+                    </a>
+
+                <% } else { %>
+
+                    No image uploaded.
+
+                <% } %>
+
+            </td>
+
+        </tr>
+
+
+        <!-- Other Pictures -->
+
+        <tr>
+
+            <td>Other Pictures</td>
+
+            <td>
+
+                <% if (otherPics.length > 0) { %>
+
+                    <div class="gallery">
+
+                        <% otherPics.forEach(pic => { %>
+
+                            <div>
+
+                                <img
+                                    src="/uploads/others/<%= pic.filename %>"
+                                    class="other-img"
+                                >
+
+                                <br>
+
+                                <a
+                                    href="/download/others/<%= pic.filename %>"
+                                >
+                                    Download
+                                </a>
+
+                            </div>
+
+                        <% }) %>
+
+                    </div>
+
+                <% } else { %>
+
+                    No other images uploaded.
+
+                <% } %>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+
+    <br>
+
+    <a href="/" class="button">
+        Register Another User
+    </a>
+
+</div>
+
+</body>
+
+</html>
